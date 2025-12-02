@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dystopian ID - PLAMEN</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Barcode+39+Extended+Text&display=swap" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon_p_64.png">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0a0a0a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Courier New', monospace;
+            padding: 20px;
+        }
+
+        .id-card {
+            background: #000;
+            border: 3px solid #333;
+            width: 400px;
+            padding: 30px;
+            position: relative;
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.3);
+        }
+
+        .glitch {
+            position: relative;
+            animation: glitch-main 3s infinite;
+        }
+
+        @keyframes glitch-main {
+            0%, 90%, 100% {
+                transform: translate(0);
+            }
+            92% {
+                transform: translate(-2px, 1px);
+            }
+            94% {
+                transform: translate(2px, -1px);
+            }
+            96% {
+                transform: translate(-1px, 2px);
+            }
+        }
+
+        .barcode {
+            background: white;
+            padding: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 32px;
+            letter-spacing: 2px;
+            font-weight: bold;
+            font-family: 'Libre Barcode 128', cursive;
+        }
+
+        .barcode-lines {
+            background: white;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .barcode-lines::before {
+            content: '||||| || ||| ||| ||| |||| | || ||||| || | |||| ||| | || |||';
+            font-size: 28px;
+            letter-spacing: 1px;
+            color: black;
+            font-weight: bold;
+        }
+
+        .section {
+            margin-bottom: 20px;
+            color: #0f0;
+            text-shadow: 0 0 5px #0f0;
+        }
+
+        .label {
+            font-size: 11px;
+            letter-spacing: 2px;
+            margin-bottom: 3px;
+        }
+
+        .value {
+            font-size: 16px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .warning-stamp {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-15deg);
+            border: 4px solid #ff0000;
+            color: #ff0000;
+            padding: 10px 40px;
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 3px;
+            opacity: 0.7;
+            text-shadow: 0 0 10px #ff0000;
+            pointer-events: none;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 0.7;
+            }
+            50% {
+                opacity: 0.4;
+            }
+        }
+
+        .red-text {
+            color: #ff0000;
+            text-shadow: 0 0 5px #ff0000;
+        }
+
+        .yellow-text {
+            color: #ffff00;
+            text-shadow: 0 0 5px #ffff00;
+        }
+
+        .resistance-mark {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            opacity: 0.3;
+        }
+
+        .resistance-mark svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .scanline {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: rgba(0, 255, 0, 0.3);
+            animation: scan 4s infinite;
+        }
+
+        @keyframes scan {
+            0% {
+                top: 0;
+            }
+            100% {
+                top: 100%;
+            }
+        }
+
+        .serial {
+            color: #666;
+            font-size: 9px;
+            letter-spacing: 1px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .grid-lines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(rgba(0, 255, 0, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 0, 0.03) 1px, transparent 1px);
+            background-size: 20px 20px;
+            pointer-events: none;
+        }
+
+        .violation-marker {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: #ff0000;
+            margin-right: 3px;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50%, 100% {
+                opacity: 1;
+            }
+            25%, 75% {
+                opacity: 0.3;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="id-card glitch">
+        <div class="grid-lines"></div>
+        <div class="scanline"></div>
+        
+        <div style="background: rgb(0, 0, 0); padding: 15px; margin-bottom: 20px; text-align: center;">
+            <span style="font-family: 'Libre Barcode 39 Extended Text'; font-size: 55px; color: rgb(255, 255, 255);">X9T4Q22871</span>
+        </div>
+        
+        <div class="section">
+          <div class="label">FUTURE PROFILE TAG</div>
+          <div class="value">PLAMEN CHEKOV – PROFILE v2140.9</div>
+        </div>
+
+        <div class="section yellow-text">
+          <div class="label">CORE IDENTITY</div>
+          <div class="value">SPECIES: HUMAN 99.1% / CAFFEINE 0.9%</div>
+        </div>
+
+        <div class="section">
+            <div class="label">URBAN LEVEL</div>
+            <div class="value">AUTHORIZED ZONE</div>
+            <div class="value">STRATEGIC OPERATIONS GRID</div>
+        </div>
+
+        <div class="section red-text">
+            <div class="label">THREAT ASSESSMENT</div>
+            <div class="value"><span class="violation-marker"></span>UNPREDICTABLE - HIGH INTEL VALUE</div>
+        </div>
+
+        <div class="section yellow-text">
+            <div class="label">SYSTEM STATUS</div>
+            <div class="value">PLAMOS-21.9 LTS - RUNNING WITH ELEVATED PRIVILEGES</div>
+        </div>
+
+        <div class="section">
+            <div class="label">OPERATIONAL ROLE</div>
+            <div class="value">LEAD ARCHITECT OF CONTROLLED CHAOS (DATA EDITION)</div>
+        </div>
+
+        <div class="section yellow-text">
+            <div class="label">BEHAVIORAL ANALYSIS</div>
+            <div class="value">OPTIMIZES REALITY</div>
+            <div class="value">DEBBUGS UNIVERSES</div>
+            <div class="value">RAISING THREE CLONES OF HIMSELF</div>
+        </div>
+
+        <div class="section">
+            <div class="label">CORE ABILITIES</div>
+            <div class="value">REVENUE ENGINE DOMINATOR</div>
+            <div class="value">DATA-FLOW CONJURER</div>
+            <div class="value">MULTI-DIMENSIONAL PIPELINE COMMANDER</div>
+        </div>
+
+        <div class="section red-text">
+            <div class="label">ACHIEVEMENT LOG</div>
+            <div class="value">SURVIVED MULTIPLE THURSDAY RELEASES</div>
+            <div class="value">OUTSMARTED ALIEN AUDITORS DURING IFRS15 CYCLE</div>
+            <div class="value">MASTERED “FAKE KINDNESS VS OUTRIGHT STUPIDITY” PROTOCOL</div>
+        </div>
+
+        <div class="serial">
+            SN: X2-68RK-5LM9-QT404-2188-JM4
+        </div>
+
+        <div class="warning-stamp">FLAGGED</div>
+
+        <div class="resistance-mark">
+            <svg viewBox="0 0 100 100" fill="none" stroke="#0f0" stroke-width="3">
+                <circle cx="50" cy="50" r="30"/>
+                <circle cx="50" cy="50" r="20"/>
+                <circle cx="50" cy="50" r="10"/>
+                <line x1="50" y1="20" x2="50" y2="80"/>
+                <line x1="20" y1="50" x2="80" y2="50"/>
+            </svg>
+        </div>
+    </div>
+</body>
+</html>
